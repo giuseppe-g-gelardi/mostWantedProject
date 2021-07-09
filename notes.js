@@ -287,6 +287,20 @@ const data = [
   },
 ];
 
+// TODO - alert user if they entered an invalid value
+
+const searchSingleCriteriaID = (people) => {
+  let userInput = prompt('What is their ID#?');
+  let selected = [];
+  people.forEach((person) => {
+    if (person.id === userInput) {
+      selected.push(person);
+    }
+  });
+  console.log('These are the results for that ID#');
+  return selected;
+};
+
 const searchSingleCriteriaFirstName = (people) => {
   let userInput = prompt('What is their First Name?');
   let selected = [];
@@ -360,12 +374,40 @@ const searchSingleCriteriaOccupation = (people) => {
   return selected;
 };
 
+// not yet working
+const searchSingleCriteriaParents = (people) => {
+  let userInput = prompt('What are their parent/s ID#?');
+  let selected = [];
+  people.forEach((person) => {
+    if (person.parents === userInput.toLowerCase()) {
+      selected.push(person);
+    }
+  });
+  console.log('These are the results for those parents');
+  return selected;
+};
+
+// not tested
+const searchSingleCriteriaSpouse = (people) => {
+  let userInput = prompt('What are their parent/s ID#?');
+  let selected = [];
+  people.forEach((person) => {
+    if (person.currentSpouse === userInput.toLowerCase()) {
+      selected.push(person);
+    }
+  });
+  console.log('These are the results for their current spouse');
+  return selected;
+};
+
 const singleCriteriaSearch = () => {
   let userInput = prompt(
     "How would you like to search? Try: \n'ID,' 'First Name,' 'Last Name,' \n'Gender,' 'DOB,' 'Height,' \n'Weight,' 'Eye Color,' 'Occupation,' \n'Parents,' or 'Current Spouse' "
   );
 
-  if (userInput === 'First Name') {
+  if (userInput === 'ID') {
+    return searchSingleCriteriaID(data);
+  } else if (userInput === 'First Name') {
     return searchSingleCriteriaFirstName(data);
   } else if (userInput === 'Last Name') {
     return searchSingleCriteriaLastName(data);
@@ -377,6 +419,12 @@ const singleCriteriaSearch = () => {
     return searchSingleCriteriaEyeColor(data);
   } else if (userInput === 'Occupation') {
     return searchSingleCriteriaOccupation(data);
+  } else if (userInput === 'Parents') {
+    // not working
+    return searchSingleCriteriaParents(data);
+  } else if (userInput === 'Spouse') {
+    // not tested
+    return searchSingleCriteriaSpouse(data);
   }
 };
 
