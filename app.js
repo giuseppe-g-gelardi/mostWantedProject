@@ -156,15 +156,23 @@ function displayPerson(person){
 //response: Will capture the user input.
 //isValid: Will capture the return of the validation function callback. true(the user input is valid)/false(the user input was not valid).
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
-function promptFor(question, valid){
-  let response;
-  let isValid;
+
+const promptFor(question, valid) => {
   do{
-    response = prompt(question).trim();
-    isValid = valid(response);
-  } while(response !== ""  ||  isValid === false)
-  return response
+    let responst = prompt(questions).trim();
+  } while(response || !valid(response));
+  return response;
 }
+
+// function promptFor(question, valid){
+//   let response;
+//   let isValid;
+//   do{
+//     response = prompt(question).trim();
+//     isValid = valid(response);
+//   } while(response !== ""  ||  isValid === false)
+//   return response
+// }
 
 // helper function/callback to pass into promptFor to validate yes/no answers.
 function yesNo(input){
