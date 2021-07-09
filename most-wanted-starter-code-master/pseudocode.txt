@@ -49,8 +49,7 @@ const func = (promptStr, choiceArr) => {
 
 4,//(20 points): As a user, I want to be able to search for someone based on multiple traits (up to a maximum of five criteria at once). 
   // i.e., if you search for Gender: male and Eye Color: blue, you should get back a list of people who match the search. In this case, it will be only people who are male with blue eyes.
-
-
+		we will take in user input and store it. then check it againts out people base to see who matches all the search  criteria and then store them to be looked at
 
 5, //(15 points): As a user, I want to be able to look up someone’s information after I find them with the program (display values for the various traits of the found person).
 
