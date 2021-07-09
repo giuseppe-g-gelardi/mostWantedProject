@@ -159,7 +159,7 @@ function displayPerson(person){
 
 const promptFor(question, valid) => {
   do{
-    let responst = prompt(questions).trim();
+    let responst = prompt(question).trim();
   } while(response || !valid(response));
   return response;
 }
