@@ -1,4 +1,5 @@
 "use strict"
+let descendant = "";
 let people = data;
 let person = [];
 let personInfo = "";
@@ -188,4 +189,24 @@ function customValidation(input){
   
 }
 
+// finding decdents
+findingDescendants(person)
+function findingDescendants (person){
+  person.map(function(person){
+  if(person.parents != false){
+    descendant += person.parents;
+    findingDescendants (descendant);
+    return descendant;
+  }
+  else{
+    alert (descendant);
+    return descendant;
+  }
+});
+}
+
+
+
+
 //#endregion
+
