@@ -49,7 +49,28 @@ const func = (promptStr, choiceArr) => {
 
 4,//(20 points): As a user, I want to be able to search for someone based on multiple traits (up to a maximum of five criteria at once). 
   // i.e., if you search for Gender: male and Eye Color: blue, you should get back a list of people who match the search. In this case, it will be only people who are male with blue eyes.
-		we will take in user input and store it. then check it againts out people base to see who matches all the search  criteria and then store them to be looked at
+
+    // get & display full data set
+    // Search on user's first request using chosen filter 
+    // Display results
+    // Request for additional filters
+    // Search subset of data with additional filter
+    // Display results
+    // Repeat until user is satisfied or choose to display individual info
+
+    1, try to find all the parents,
+      array.filter()? find matching ID values
+    2, try to find the spouse
+      find the missing spouse using IDs
+      array.filter() as well. 
+    3, try to find the siblings
+      if the persons parent array at index 0 is found anywhere in the other peoples parents Array
+      if the persons parent array at index  is found anywhere in the other peoples parents Array
+      ^^^^ if both are true, we have a sibling
+    4, bring data together
+      loop over all the three arrays, one at a time, build a string (use string concat/template literal) with all of the first and last name of the people in the found arrays.
+
+
 
 5, //(15 points): As a user, I want to be able to look up someone’s information after I find them with the program (display values for the various traits of the found person).
 

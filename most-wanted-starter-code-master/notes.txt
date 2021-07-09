@@ -1,0 +1,14 @@
+const printPersonAttributes = (people) => {
+  let selected = []
+  people.forEach((person) => {
+    if (person.eyeColor === "blue") {
+      selected.push(person)
+    }
+  })
+  return selected
+}
+printPersonAttributes(data)
+
+
+
+im a big dumb.... finally figured it out! 
