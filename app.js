@@ -1,5 +1,7 @@
-"use strict"
-let descendant = "";
+'use strict';
+
+//thomas, can you please explain what this is? :D
+let descendant = '';
 let people = data;
 let person = [];
 let personInfo = '';
@@ -98,14 +100,26 @@ function searchByName(people) {
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 // THIS IS A TEST FUNCTION COPY OVER
 
+// function findingEyeColor(people) {
+//   let input = prompt('what eye color?');
+//   person = people.filter(function (el) {
+//     if (el.eyeColor === input) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+//   });
+//   console.log(person);
+//   return person;
+// }
+
+// console.log(findingEyeColor(people));
+
+// refactored above function
 function findingEyeColor(people) {
   let input = prompt('what eye color?');
   person = people.filter(function (el) {
-    if (el.eyeColor === input) {
-      return true;
-    } else {
-      return false;
-    }
+    return el.eyeColor === input;
   });
   console.log(person);
   return person;
@@ -185,12 +199,17 @@ const promptFor = (question, valid) => {
 // }
 
 // helper function/callback to pass into promptFor to validate yes/no answers.
+// function yesNo(input) {
+//   if (input.toLowerCase() == 'yes' || input.toLowerCase() == 'no') {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// refactored helper function (the one above)
 function yesNo(input) {
-  if (input.toLowerCase() == 'yes' || input.toLowerCase() == 'no') {
-    return true;
-  } else {
-    return false;
-  }
+  return input.toLowerCase() == 'yes' || input.toLowerCase() == 'no';
 }
 
 // helper function to pass in as default promptFor validation.
@@ -203,28 +222,19 @@ function autoValid(input) {
 //can be used for things like eye color validation for example.
 function customValidation(input) {}
 
-<<<<<<< HEAD
-//#endregion
-=======
 // finding decdents
-findingDescendants(person)
-function findingDescendants (person){
-  person.map(function(person){
-  if(person.parents != false){
-    descendant += person.parents;
-    findingDescendants (descendant);
-    return descendant;
-  }
-  else{
-    alert (descendant);
-    return descendant;
-  }
-});
+findingDescendants(person);
+function findingDescendants(person) {
+  person.map(function (person) {
+    if (person.parents != false) {
+      descendant += person.parents;
+      findingDescendants(descendant);
+      return descendant;
+    } else {
+      alert(descendant);
+      return descendant;
+    }
+  });
 }
 
-
-
-
 //#endregion
-
->>>>>>> 2b7d5820e8427c16e02d9790f5861b39d74cc2d9
