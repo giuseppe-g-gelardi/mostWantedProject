@@ -289,6 +289,15 @@ const data = [
 
 // TODO - alert user if they entered an invalid value
 
+// notes from cash :
+// Write a function that takes in two parameters:
+// // a prompt string
+// // a set of valid options
+
+// Prompt the user with the string and options
+// // Validate the users input against the options
+// // Return their choice
+
 const searchSingleCriteriaID = (people) => {
   let userInput = prompt('What is their ID#?');
   let selected = [];
