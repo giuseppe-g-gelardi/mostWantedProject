@@ -1,4 +1,5 @@
-'use strict';
+"use strict"
+let descendant = "";
 let people = data;
 let person = [];
 let personInfo = '';
@@ -202,4 +203,28 @@ function autoValid(input) {
 //can be used for things like eye color validation for example.
 function customValidation(input) {}
 
+<<<<<<< HEAD
 //#endregion
+=======
+// finding decdents
+findingDescendants(person)
+function findingDescendants (person){
+  person.map(function(person){
+  if(person.parents != false){
+    descendant += person.parents;
+    findingDescendants (descendant);
+    return descendant;
+  }
+  else{
+    alert (descendant);
+    return descendant;
+  }
+});
+}
+
+
+
+
+//#endregion
+
+>>>>>>> 2b7d5820e8427c16e02d9790f5861b39d74cc2d9
