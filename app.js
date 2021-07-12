@@ -43,11 +43,11 @@ function mainMenu(person, people) {
   }
 
   let displayOption = promptFor(
-    'Found ' +
-      person.firstName +
-      ' ' +
-      person.lastName +
-      " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'",
+    `"Found ${person.firstName} ${person.lastName}. 
+    \nDo you want to know their 'info', 'family', or 'descendants'? 
+    \nType the option you want or 'restart' or 'quit'"`,
+    // adjusted the above line
+    //'Found ' + person.firstName + ' ' + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'",
     autoValid
   );
 
@@ -77,56 +77,85 @@ function mainMenu(person, people) {
 //Ideally you will have a function for each trait.
 /////////////////////////////////////////////////////////////////
 //#region
-
-//nearly finished function used to search through an array of people to find matching first and last name and return a SINGLE person object.
-function searchByName(people) {
-  let firstName = promptFor("What is the person's first name?", autoValid);
-  let lastName = promptFor("What is the person's last name?", autoValid);
-
-  let foundPerson = people.filter(function (potentialMatch) {
-    if (
-      potentialMatch.firstName === firstName &&
-      potentialMatch.lastName === lastName
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+function searchByID(people) {
+  let id = prompt("What is the person's ID#?", autoValid);
+  people.filter(function (potentialMatch) {
+    return potentialMatch.id === parseInt(id);
   });
-  // TODO: find the person single person object using the name they entered.
-  return foundPerson;
 }
+//searchByID(data) // 982411429
 
-//unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
-// THIS IS A TEST FUNCTION COPY OVER
+function searchByFirstName(people) {
+  let firstName = prompt("What is the person's First Name", autoValid);
 
-// function findingEyeColor(people) {
-//   let input = prompt('what eye color?');
-//   person = people.filter(function (el) {
-//     if (el.eyeColor === input) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   });
-//   console.log(person);
-//   return person;
-// }
-
-// console.log(findingEyeColor(people));
-
-// refactored above function
-function findingEyeColor(people) {
-  let input = prompt('what eye color?');
-  person = people.filter(function (el) {
-    return el.eyeColor === input;
+  people.filter(function (potentialMatch) {
+    return potentialMatch.firstName === firstName;
   });
-  console.log(person);
-  return person;
 }
+//searchByFirstName(data)
 
-console.log(findingEyeColor(people));
+function searchByLastName(people) {
+  let lastName = prompt("What is the person's Last Name", autoValid);
 
+  people.filter(function (potentialMatch) {
+    return potentialMatch.lastName === lastName;
+  });
+}
+//searchByLastName(data)
+
+function searchByGender(people) {
+  let gender = prompt("What is the person's Gender", autoValid);
+
+  people.filter(function (potentialMatch) {
+    return potentialMatch.gender === gender;
+  });
+}
+//searchByGender(data)
+
+function searchByDob(people) {
+  let dob = prompt("What is the person's Date-of-Birth", autoValid);
+
+  people.filter(function (potentialMatch) {
+    return potentialMatch.dob === dob;
+  });
+}
+//searchByDob(data) // 12/23/1969
+
+function searchByHeight(people) {
+  let height = prompt("What is the person's Height?", autoValid);
+
+  people.filter(function (potentialMatch) {
+    return potentialMatch.height === parseInt(height);
+  });
+}
+//searchByHeight(data) // 66
+
+function searchByWeight(people) {
+  let weight = prompt("What is the person's Weight?", autoValid);
+
+  people.filter(function (potentialMatch) {
+    return potentialMatch.weight === parseInt(weight);
+  });
+}
+//searchByWeight(data) // 170
+
+function searchByEyeColor(people) {
+  let eyeColor = prompt("What is the person's Eye color", autoValid);
+
+  people.filter(function (potentialMatch) {
+    return potentialMatch.eyeColor === eyeColor;
+  });
+}
+//searchByEyeColor(data)
+
+function searchByOccupation(people) {
+  let occupation = prompt("What is the person's Occupation", autoValid);
+
+  people.filter(function (potentialMatch) {
+    return potentialMatch.occupation === occupation;
+  });
+}
+//searchByOccupation(data)
 //TODO: add other trait filter functions here.
 
 //#endregion
