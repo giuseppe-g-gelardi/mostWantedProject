@@ -1,13 +1,10 @@
 'use strict';
-
-//thomas, can you please explain what this is? :D
-let descendant = '';
+let descendants = [];
 let people = data;
 let person = [];
 let personInfo = '';
 //Menu functions.
 //Used for the overall flow of the application.
-/////////////////////////////////////////////////////////////////
 //#region
 
 // app is the function called to start the entire application
@@ -75,7 +72,6 @@ function mainMenu(person, people) {
 
 //Filter functions.
 //Ideally you will have a function for each trait.
-/////////////////////////////////////////////////////////////////
 //#region
 function searchByID(people) {
   let id = prompt("What is the person's ID#?", autoValid);
@@ -162,7 +158,6 @@ function searchByOccupation(people) {
 
 //Display functions.
 //Functions for user interface.
-/////////////////////////////////////////////////////////////////
 //#region
 
 // alerts a list of people
@@ -202,7 +197,6 @@ alert(personInfo);
 
 //Validation functions.
 //Functions to validate user input.
-/////////////////////////////////////////////////////////////////
 //#region
 
 //a function that takes in a question to prompt, and a callback function to validate the user input.
@@ -251,19 +245,21 @@ function autoValid(input) {
 //can be used for things like eye color validation for example.
 function customValidation(input) {}
 
-// finding decdents
-findingDescendants(person);
-function findingDescendants(person) {
-  person.map(function (person) {
-    if (person.parents != false) {
-      descendant += person.parents;
-      findingDescendants(descendant);
-      return descendant;
-    } else {
-      alert(descendant);
-      return descendant;
-    }
-  });
+console.log(findingDescendants(person, people));
+
+function findingDescendants(person, people) {
+  descendants = [];
+  for (let i = 0; i < person.length; i++) {
+    let group = people.filter(function (el) {
+      if (el.parents.includes(person[i].id)) {
+        return el;
+      }
+    });
+    descendants = descendants.concat(findingDescendants(group, people));
+    descendants = descendants.concat(group);
+  }
+  alert(descendants);
+  return descendants;
 }
 
 //#endregion
