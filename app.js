@@ -1,7 +1,5 @@
 'use strict';
 
-// import { data } from './data.js'; // ????????
-
 let descendants = [];
 let people = data;
 let person = [];
@@ -79,10 +77,10 @@ function mainMenu(person, people) {
 //#region
 
 function searchByName(people) {
-  let firstName = promptFor("What is the person's first name?", autoValid);
-  let lastName = promptFor("What is the person's last name?", autoValid);
+  let firstName = prompt("What is the person's first name?", autoValid);
+  let lastName = prompt("What is the person's last name?", autoValid);
 
-  people.filter(function (potentialMatch) {
+  let foundPerson = people.filter(function (potentialMatch) {
     if (
       potentialMatch.firstName === firstName &&
       potentialMatch.lastName === lastName
@@ -95,10 +93,11 @@ function searchByName(people) {
   // TODO: find the person single person object using the name they entered.
   return foundPerson;
 }
+// searchByName(data)
 
 function searchByID(people) {
   let id = prompt("What is the person's ID#?", autoValid);
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.id === parseInt(id);
   });
 }
@@ -107,7 +106,7 @@ function searchByID(people) {
 function searchByFirstName(people) {
   let firstName = prompt("What is the person's First Name", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.firstName === firstName;
   });
 }
@@ -116,7 +115,7 @@ function searchByFirstName(people) {
 function searchByLastName(people) {
   let lastName = prompt("What is the person's Last Name", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.lastName === lastName;
   });
 }
@@ -125,7 +124,7 @@ function searchByLastName(people) {
 function searchByGender(people) {
   let gender = prompt("What is the person's Gender", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.gender === gender;
   });
 }
@@ -134,7 +133,7 @@ function searchByGender(people) {
 function searchByDob(people) {
   let dob = prompt("What is the person's Date-of-Birth", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.dob === dob;
   });
 }
@@ -143,7 +142,7 @@ function searchByDob(people) {
 function searchByHeight(people) {
   let height = prompt("What is the person's Height?", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.height === parseInt(height);
   });
 }
@@ -152,7 +151,7 @@ function searchByHeight(people) {
 function searchByWeight(people) {
   let weight = prompt("What is the person's Weight?", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.weight === parseInt(weight);
   });
 }
@@ -161,7 +160,7 @@ function searchByWeight(people) {
 function searchByEyeColor(people) {
   let eyeColor = prompt("What is the person's Eye color", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.eyeColor === eyeColor;
   });
 }
@@ -170,7 +169,7 @@ function searchByEyeColor(people) {
 function searchByOccupation(people) {
   let occupation = prompt("What is the person's Occupation", autoValid);
 
-  people.filter(function (potentialMatch) {
+  return people.filter(function (potentialMatch) {
     return potentialMatch.occupation === occupation;
   });
 }
@@ -199,7 +198,7 @@ function displayPerson(person) {
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   person.map(function (person) {
-    personInfo = 'First Name: ' + person.firstName + '\n';
+    let personInfo = 'First Name: ' + person.firstName + '\n';
     personInfo += 'Last Name: ' + person.lastName + '\n';
     personInfo += 'id: ' + person.id + '\n';
     personInfo += 'gender: ' + person.gender + '\n';
@@ -266,12 +265,12 @@ function autoValid(input) {
 
 //Unfinished validation function you can use for any of your custom validation callbacks.
 //can be used for things like eye color validation for example.
-function customValidation(input) {}
+//function customValidation(input) {}
 
 console.log(findingDescendants(person, people));
 
 function findingDescendants(person, people) {
-  descendants = [];
+  let descendants = [];
   for (let i = 0; i < person.length; i++) {
     let group = people.filter(function (el) {
       if (el.parents.includes(person[i].id)) {
