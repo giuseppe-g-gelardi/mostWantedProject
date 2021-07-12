@@ -1,8 +1,12 @@
 'use strict';
+
+// import { data } from './data.js'; // ????????
+
 let descendants = [];
 let people = data;
 let person = [];
 let personInfo = '';
+
 //Menu functions.
 //Used for the overall flow of the application.
 //#region
@@ -73,6 +77,25 @@ function mainMenu(person, people) {
 //Filter functions.
 //Ideally you will have a function for each trait.
 //#region
+
+function searchByName(people) {
+  let firstName = promptFor("What is the person's first name?", autoValid);
+  let lastName = promptFor("What is the person's last name?", autoValid);
+
+  people.filter(function (potentialMatch) {
+    if (
+      potentialMatch.firstName === firstName &&
+      potentialMatch.lastName === lastName
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  // TODO: find the person single person object using the name they entered.
+  return foundPerson;
+}
+
 function searchByID(people) {
   let id = prompt("What is the person's ID#?", autoValid);
   people.filter(function (potentialMatch) {
