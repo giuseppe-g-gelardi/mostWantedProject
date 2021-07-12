@@ -1,5 +1,5 @@
 "use strict"
-let descendant = "";
+let descendants = []
 let people = data;
 let person = [];
 let personInfo = "";
@@ -96,13 +96,12 @@ function findingEyeColor(people){
     else{
       return false;
     }
-  })
-    console.log(person);
-  return person
+  });
+  return person;
 }
+findingEyeColor(people)
 
 
-console.log(findingEyeColor(people));
 
 //TODO: add other trait filter functions here.
 
@@ -158,12 +157,12 @@ function displayPerson(person){
 //isValid: Will capture the return of the validation function callback. true(the user input is valid)/false(the user input was not valid).
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
 
-const promptFor(question, valid) => {
-  do{
-    let response = prompt(question).trim();
-  } while(response || !valid(response));
-  return response;
-}
+// const promptFor(question, valid) => {
+//   do{
+//     let response = prompt(question).trim();
+//   } while(response || !valid(response));
+//   return response;
+// }
 
 // function promptFor(question, valid){
 //   let response;
@@ -197,24 +196,28 @@ function customValidation(input){
   
 }
 
-// finding decdents
-findingDescendants(person)
-function findingDescendants (person){
-  person.map(function(person){
-  if(person.parents != false){
-    descendant += person.parents;
-    findingDescendants (descendant);
-    return descendant;
+console.log(findingDescendants(person, people));
+
+
+function findingDescendants (person, people) {
+  descendants = [];
+  for(let i = 0; i < person.length; i++){
+    let group = people.filter(function (el) {  
+      if (el.parents.includes(person[i].id)) {
+        return el;
+      }  
+    });
+    descendants = descendants.concat(findingDescendants(group, people));  
+    descendants = descendants.concat(group);
+  
   }
-  else{
-    alert (descendant);
-    return descendant;
-  }
-});
+  alert(descendants)
+  return descendants;
 }
 
 
 
 
+ 
 //#endregion
 
