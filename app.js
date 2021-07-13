@@ -43,34 +43,34 @@ let siblings = []
 //     return app(people); // restart
 //   }
 
-//   let displayOption = promptFor(
-//     'Found ' +
-//       person.firstName +
-//       ' ' +
-//       person.lastName +
-//       " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'",
-//     autoValid
-//   );
+  let displayOption = promptFor(
+    `"Found ${person.firstName} ${person.lastName}. 
+    \nDo you want to know their 'info', 'family', or 'descendants'? 
+    \nType the option you want or 'restart' or 'quit'"`,
+    // adjusted the above line
+    //'Found ' + person.firstName + ' ' + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'",
+    autoValid
+  );
 
-//   switch (displayOption) {
-//     case 'info':
-//       // TODO: get person's info
-//       break;
-//     case 'family':
-//       // TODO: get person's family
-//       break;
-//     case 'descendants':
-//       // TODO: get person's descendants
-//       break;
-//     case 'restart':
-//       app(people); // restart
-//       break;
-//     case 'quit':
-//       return; // stop execution
-//     default:
-//       return mainMenu(person, people); // ask again
-//   }
-// }
+  switch (displayOption) {
+    case 'info':
+      // TODO: get person's info
+      break;
+    case 'family':
+      // TODO: get person's family
+      break;
+    case 'descendants':
+      // TODO: get person's descendants
+      break;
+    case 'restart':
+      app(people); // restart
+      break;
+    case 'quit':
+      return; // stop execution
+    default:
+      return mainMenu(person, people); // ask again
+  }
+}
 
 //#endregion
 
@@ -78,54 +78,140 @@ let siblings = []
 //Ideally you will have a function for each trait.
 //#region
 
-// //nearly finished function used to search through an array of people to find matching first and last name and return a SINGLE person object.
-// function searchByName(people) {
-//   let firstName = promptFor("What is the person's first name?", autoValid);
-//   let lastName = promptFor("What is the person's last name?", autoValid);
+function searchByName(people) {
+  let firstName = prompt("What is the person's first name?", autoValid);
+  let lastName = prompt("What is the person's last name?", autoValid);
 
-//   let foundPerson = people.filter(function (potentialMatch) {
-//     if (
-//       potentialMatch.firstName === firstName &&
-//       potentialMatch.lastName === lastName
-//     ) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   });
-//   // TODO: find the person single person object using the name they entered.
-//   return foundPerson;
-// }
-
-//unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
-// THIS IS A TEST FUNCTION COPY OVER
-
-function findingEyeColor(people) {
-  let input = prompt('what eye color?');
-  person = people.filter(function (el) {
-    if (el.eyeColor === input) {
+  let foundPerson = people.filter(function (potentialMatch) {
+    if (
+      potentialMatch.firstName === firstName &&
+      potentialMatch.lastName === lastName
+    ) {
       return true;
     } else {
       return false;
     }
   });
-  console.log(person);
-  return person;
+  // TODO: find the person single person object using the name they entered.
+  return foundPerson;
 }
- findingEyeColor(people)
-// console.log(findingEyeColor(people));
+// searchByName(data)
 
-// // refactored above function
-// function findingEyeColor(people) {
-//   let input = prompt('what eye color?');
-//   person = people.filter(function (el) {
-//     return el.eyeColor === input;
-//   });
-//   console.log(person);
-//   return person;
-// }
-// function findingEyeColor(people)
+function searchByID(people) {
+  let id = prompt("What is the person's ID#?", autoValid);
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.id === parseInt(id);
+  });
+}
+//searchByID(data) // 982411429
 
+const searchByFirstName = (people) => {
+  let firstName = prompt("What is the person's First Name", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.firstName === firstName;
+  });
+};
+const searchByLastName = (people) => {
+  let lastName = prompt("What is the person's Last Name", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.lastName === lastName;
+  });
+};
+const searchByGender = (people) => {
+  let gender = prompt("What is the person's Gender", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.gender === gender;
+  });
+};
+
+const searchByDob = (people) => {
+  let dob = prompt("What is the person's Date-of-Birth", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.dob === dob;
+  });
+};
+
+const searchByHeight = (people) => {
+  let height = prompt("What is the person's Height?", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.height === parseInt(height);
+  });
+};
+
+const searchByWeight = (people) => {
+  let weight = prompt("What is the person's Weight?", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.weight === parseInt(weight);
+  });
+};
+
+const searchByEyeColor = (people) => {
+  let eyeColor = prompt("What is the person's Eye color", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.eyeColor === eyeColor;
+  });
+};
+
+const searchByOccupation = (people) => {
+  let occupation = prompt("What is the person's Occupation", autoValid);
+
+  return people.filter(function (potentialMatch) {
+    return potentialMatch.occupation === occupation;
+  });
+};
+
+const multiCriteriaSearch = (people) => {
+  let filteredResults = people;
+
+  for (let i = 0; i < 5; i++) {
+    let searchCriteria = prompt(
+      'How would you like to search? Try: \n\nFirst Name, Last Name, Gender, \nDate of Birth (dob), Height, Weight, \nEye Color or Occupation'
+    );
+
+    switch (searchCriteria) {
+      case 'first name':
+        filteredResults = searchByFirstName(filteredResults);
+        break;
+      case 'last name':
+        filteredResults = searchByLastName(filteredResults);
+        break;
+      case 'gender':
+        filteredResults = searchByGender(filteredResults);
+        break;
+      case 'dob':
+        filteredResults = searchByDob(filteredResults);
+        break;
+      case 'height':
+        filteredResults = searchByHeight(filteredResults);
+        break;
+      case 'weight':
+        filteredResults = searchByWeight(filteredResults);
+        break;
+      case 'eye color':
+        filteredResults = searchByEyeColor(filteredResults);
+        break;
+      case 'occupation':
+        filteredResults = searchByOccupation(filteredResults);
+      default:
+        break;
+    }
+    let rePrompt = prompt('Would you like to keep searching? yes or no');
+
+    if (rePrompt === 'no') {
+      return filteredResults;
+    }
+  }
+  return filteredResults;
+};
+multiCriteriaSearch(data);
+//searchByOccupation(data)
 //TODO: add other trait filter functions here.
 
 //#endregion
@@ -217,22 +303,21 @@ function displayPerson(person){
 //   return true; // default validation only
 // }
 
-// //Unfinished validation function you can use for any of your custom validation callbacks.
-// //can be used for things like eye color validation for example.
-// function customValidation(input) {}
+//Unfinished validation function you can use for any of your custom validation callbacks.
+//can be used for things like eye color validation for example.
+//function customValidation(input) {}
 
 // console.log(findingDescendants(person, people));
 
-
-function findingDescendants (person, people) {
-  descendants = [];
-  for(let i = 0; i < person.length; i++){
-    let group = people.filter(function (el) {  
+function findingDescendants(person, people) {
+  let descendants = [];
+  for (let i = 0; i < person.length; i++) {
+    let group = people.filter(function (el) {
       if (el.parents.includes(person[i].id)) {
         return el;
-      }  
+      }
     });
-    descendants = descendants.concat(findingDescendants(group, people));  
+    descendants = descendants.concat(findingDescendants(group, people));
     descendants = descendants.concat(group);
     
   }
@@ -261,13 +346,6 @@ function findingAllCloseFamily(person, people){
   // closeFamily += "kids "+ kids.firstName + "\n"
   // alert(closeFamily)
 }
-
-
-
-
-
-
-
 
 
 
