@@ -1,9 +1,9 @@
 'use strict';
 
-let descendants = [];
-let people = data;
-let person = [];
-let personInfo = '';
+// let descendants = [];
+// let people = data;
+// let person = [];
+// let personInfo = '';
 
 //Menu functions.
 //Used for the overall flow of the application.
@@ -197,6 +197,7 @@ const multiCriteriaSearch = (people) => {
         break;
       case 'occupation':
         filteredResults = searchByOccupation(filteredResults);
+        break;
       default:
         break;
     }
