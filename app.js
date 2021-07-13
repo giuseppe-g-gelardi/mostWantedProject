@@ -1,45 +1,47 @@
-'use strict';
-
-// let descendants = [];
-// let people = data;
-// let person = [];
-// let personInfo = '';
+"use strict"
+let descendants = [];
+let people = data;
+let person = [];
+let personInfo = "";
+let spouse = []
+let kids = []
+let siblings = []
 
 //Menu functions.
 //Used for the overall flow of the application.
 //#region
 
 // app is the function called to start the entire application
-function app(people) {
-  let searchType = promptFor(
-    "Do you know the name of the person you are looking for? Enter 'yes' or 'no'",
-    yesNo
-  ).toLowerCase();
-  let searchResults;
-  switch (searchType) {
-    case 'yes':
-      searchResults = searchByName(people);
-      break;
-    case 'no':
-      // TODO: search by traits
-      break;
-    default:
-      app(people); // restart app
-      break;
-  }
+// function app(people) {
+//   let searchType = promptFor(
+//     "Do you know the name of the person you are looking for? Enter 'yes' or 'no'",
+//     yesNo
+//   ).toLowerCase();
+//   let searchResults;
+//   switch (searchType) {
+//     case 'yes':
+//       searchResults = searchByName(people);
+//       break;
+//     case 'no':
+//       // TODO: search by traits
+//       break;
+//     default:
+//       app(people); // restart app
+//       break;
+//   }
 
-  // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
-}
+//   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
+//   mainMenu(searchResults, people);
+// }
 
-// Menu function to call once you find who you are looking for
-function mainMenu(person, people) {
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+// // Menu function to call once you find who you are looking for
+// function mainMenu(person, people) {
+//   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
-  if (!person) {
-    alert('Could not find that individual.');
-    return app(people); // restart
-  }
+//   if (!person) {
+//     alert('Could not find that individual.');
+//     return app(people); // restart
+//   }
 
   let displayOption = promptFor(
     `"Found ${person.firstName} ${person.lastName}. 
@@ -219,38 +221,40 @@ multiCriteriaSearch(data);
 //Functions for user interface.
 //#region
 
-// alerts a list of people
-function displayPeople(people) {
-  alert(
-    people
-      .map(function (person) {
-        return person.firstName + ' ' + person.lastName;
-      })
-      .join('\n')
-  );
-}
+// // alerts a list of people
+// function displayPeople(people) {
+//   alert(
+//     people
+//       .map(function (person) {
+//         return person.firstName + ' ' + person.lastName;
+//       })
+//       .join('\n')
+//   );
+//}
 
-displayPerson(person);
-function displayPerson(person) {
+
+function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  person.map(function (person) {
-    let personInfo = 'First Name: ' + person.firstName + '\n';
-    personInfo += 'Last Name: ' + person.lastName + '\n';
-    personInfo += 'id: ' + person.id + '\n';
-    personInfo += 'gender: ' + person.gender + '\n';
-    personInfo += 'dob: ' + person.dob + '\n';
-    personInfo += 'height: ' + person.height + '\n';
-    personInfo += 'weight: ' + person.weight + '\n';
-    personInfo += 'eyeColor: ' + person.eyeColor + '\n';
-    personInfo += 'occupation: ' + person.occupation + '\n';
-    personInfo += 'parents: ' + person.parents + '\n';
-    personInfo += 'currentSpouse: ' + person.currenSpouse + '\n';
+  person.map(function (person){
+    personInfo = "First Name: " + person.firstName + "\n";
+    personInfo += "Last Name: " + person.lastName + "\n";
+    personInfo += "id: " + person.id + "\n";
+    personInfo += "gender: " + person.gender + "\n";
+    personInfo += "dob: " + person.dob + "\n";
+    personInfo += "height: " + person.height + "\n";
+    personInfo += "weight: " + person.weight + "\n";
+    personInfo += "eyeColor: " + person.eyeColor + "\n";
+    personInfo += "occupation: " + person.occupation + "\n";
+    personInfo += "parents: " + person.parents + "\n";
+    personInfo += "currentSpouse: " + person.currenSpouse + "\n";
     return personInfo;
   });
+  alert(personInfo);
 }
+
 // TODO: finish getting the rest of the information to display.
-alert(personInfo);
+
 
 //#endregion
 
@@ -263,12 +267,12 @@ alert(personInfo);
 //isValid: Will capture the return of the validation function callback. true(the user input is valid)/false(the user input was not valid).
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
 
-const promptFor = (question, valid) => {
-  do {
-    let response = prompt(question).trim();
-  } while (response || !valid(response));
-  return response;
-};
+// const promptFor = (question, valid) => {
+//   do {
+//     let response = prompt(question).trim();
+//   } while (response || !valid(response));
+//   return response;
+// };
 
 // function promptFor(question, valid){
 //   let response;
@@ -289,22 +293,22 @@ const promptFor = (question, valid) => {
 //   }
 // }
 
-// refactored helper function (the one above)
-function yesNo(input) {
-  return input.toLowerCase() == 'yes' || input.toLowerCase() == 'no';
-}
+// // refactored helper function (the one above)
+// function yesNo(input) {
+//   return input.toLowerCase() == 'yes' || input.toLowerCase() == 'no';
+// }
 
-// helper function to pass in as default promptFor validation.
-//this will always return true for all inputs.
-function autoValid(input) {
-  return true; // default validation only
-}
+// // helper function to pass in as default promptFor validation.
+// //this will always return true for all inputs.
+// function autoValid(input) {
+//   return true; // default validation only
+// }
 
 //Unfinished validation function you can use for any of your custom validation callbacks.
 //can be used for things like eye color validation for example.
 //function customValidation(input) {}
 
-console.log(findingDescendants(person, people));
+// console.log(findingDescendants(person, people));
 
 function findingDescendants(person, people) {
   let descendants = [];
@@ -316,9 +320,97 @@ function findingDescendants(person, people) {
     });
     descendants = descendants.concat(findingDescendants(group, people));
     descendants = descendants.concat(group);
+    
   }
-  alert(descendants);
+  descendants.map(function(descendants){
+    let descendantsInfo = "First Names: "+descendants.firstName+ "\n"
+    descendantsInfo += "Last Name " +descendants.lastName;
+    alert(descendantsInfo);
+  });
+ 
+ 
+  console.log(descendants);
   return descendants;
+  
+}
+findingAllCloseFamily(person, people)
+
+function findingAllCloseFamily(person, people){
+  findingParents(person, people)
+  findingSpouse(person, people)
+  findingSiblings(person, people)
+  findingKids(person, people)
+
+  // let closeFamily = "Parents: "+ Parent.firstName+ "\n"
+  // closeFamily += "Spouse "+ spouse.firstName+ "\n"
+  // closeFamily += "Siblings "+ siblings.firstName+ "\n"
+  // closeFamily += "kids "+ kids.firstName + "\n"
+  // alert(closeFamily)
 }
 
-//#endregion
+
+
+
+findingParents(person, people)
+
+function findingParents(person, people){
+  let parents = people.filter(function (el) {  
+    if (person[0].parents.includes(el.id)){
+      return el;
+    }   
+  });   
+  console.log("Parents")
+  console.log(parents)
+  return parents
+}
+
+
+findingSpouse(person, people)
+function findingSpouse(person, people){
+  let spouse = people.filter(function (el) {  
+    if (person[0].currentSpouse === el.id){
+      return el;
+    }   
+  });  
+  console.log("Spouse")
+  console.log(spouse)
+  return spouse;
+}
+
+findingSiblings(person, people);
+
+
+function findingSiblings(person, people){  // el is an el of people
+  let siblings = people.filter(function (el) {   
+    for(let i = 0; i < el.parents.length; i++){
+      if(el.parents[i] === person[0].parents[0] && el.id !== person[0].id){
+        return el;      
+      }      
+      else if(el.parents[i] === person[0].parents[1] && el.id !== person[0].id){
+        return el;
+      }    
+    }    
+  });  
+  console.log("siblings")
+  console.log(siblings)
+  return siblings;
+}
+
+findingKids(person, people);
+
+function findingKids(person, people){
+  let kids = [];  
+  kids = people.filter(function (el) {  
+    if (el.parents.includes(person[0].id)) {
+      return el;
+    }  
+  });
+  console.log("Children")
+  console.log(kids);
+  return kids;
+}
+
+
+
+
+
