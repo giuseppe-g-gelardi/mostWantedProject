@@ -358,23 +358,21 @@ function findingParents(person, people){
       return el;
     }   
   });   
-  console.log("parents"+parents)
+  console.log("Parents")
+  console.log(parents)
   return parents
 }
 
 
-
-
-
 findingSpouse(person, people)
-
 function findingSpouse(person, people){
   let spouse = people.filter(function (el) {  
     if (person[0].currentSpouse === el.id){
       return el;
     }   
   });  
-  console.log("Spouse"+spouse)
+  console.log("Spouse")
+  console.log(spouse)
   return spouse;
 }
 
@@ -392,7 +390,8 @@ function findingSiblings(person, people){  // el is an el of people
       }    
     }    
   });  
-  console.log("Siblings"+siblings)
+  console.log("siblings")
+  console.log(siblings)
   return siblings;
 }
 
@@ -405,7 +404,8 @@ function findingKids(person, people){
       return el;
     }  
   });
-  console.log("Children"+kids);
+  console.log("Children")
+  console.log(kids);
   return kids;
 }
 
