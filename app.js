@@ -103,76 +103,112 @@ function searchByID(people) {
 }
 //searchByID(data) // 982411429
 
-function searchByFirstName(people) {
+const searchByFirstName = (people) => {
   let firstName = prompt("What is the person's First Name", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.firstName === firstName;
   });
-}
-//searchByFirstName(data)
-
-function searchByLastName(people) {
+};
+const searchByLastName = (people) => {
   let lastName = prompt("What is the person's Last Name", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.lastName === lastName;
   });
-}
-//searchByLastName(data)
-
-function searchByGender(people) {
+};
+const searchByGender = (people) => {
   let gender = prompt("What is the person's Gender", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.gender === gender;
   });
-}
-//searchByGender(data)
+};
 
-function searchByDob(people) {
+const searchByDob = (people) => {
   let dob = prompt("What is the person's Date-of-Birth", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.dob === dob;
   });
-}
-//searchByDob(data) // 12/23/1969
+};
 
-function searchByHeight(people) {
+const searchByHeight = (people) => {
   let height = prompt("What is the person's Height?", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.height === parseInt(height);
   });
-}
-//searchByHeight(data) // 66
+};
 
-function searchByWeight(people) {
+const searchByWeight = (people) => {
   let weight = prompt("What is the person's Weight?", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.weight === parseInt(weight);
   });
-}
-//searchByWeight(data) // 170
+};
 
-function searchByEyeColor(people) {
+const searchByEyeColor = (people) => {
   let eyeColor = prompt("What is the person's Eye color", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.eyeColor === eyeColor;
   });
-}
-//searchByEyeColor(data)
+};
 
-function searchByOccupation(people) {
+const searchByOccupation = (people) => {
   let occupation = prompt("What is the person's Occupation", autoValid);
 
   return people.filter(function (potentialMatch) {
     return potentialMatch.occupation === occupation;
   });
-}
+};
+
+const multiCriteriaSearch = (people) => {
+  let filteredResults = people;
+
+  for (let i = 0; i < 5; i++) {
+    let searchCriteria = prompt(
+      'How would you like to search? Try: \n\nFirst Name, Last Name, Gender, \nDate of Birth (dob), Height, Weight, \nEye Color or Occupation'
+    );
+
+    switch (searchCriteria) {
+      case 'first name':
+        filteredResults = searchByFirstName(filteredResults);
+        break;
+      case 'last name':
+        filteredResults = searchByLastName(filteredResults);
+        break;
+      case 'gender':
+        filteredResults = searchByGender(filteredResults);
+        break;
+      case 'dob':
+        filteredResults = searchByDob(filteredResults);
+        break;
+      case 'height':
+        filteredResults = searchByHeight(filteredResults);
+        break;
+      case 'weight':
+        filteredResults = searchByWeight(filteredResults);
+        break;
+      case 'eye color':
+        filteredResults = searchByEyeColor(filteredResults);
+        break;
+      case 'occupation':
+        filteredResults = searchByOccupation(filteredResults);
+      default:
+        break;
+    }
+    let rePrompt = prompt('Would you like to keep searching? yes or no');
+
+    if (rePrompt === 'no') {
+      return filteredResults;
+    }
+  }
+  return filteredResults;
+};
+multiCriteriaSearch(data);
 //searchByOccupation(data)
 //TODO: add other trait filter functions here.
 
